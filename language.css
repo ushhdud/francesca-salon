@@ -1,0 +1,8 @@
+.language-switcher{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;color:inherit;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.language-switcher select{-webkit-appearance:none!important;appearance:none!important;border:1px solid currentColor;border-color:color-mix(in srgb,currentColor 55%,transparent);border-radius:0;background-color:transparent!important;color:inherit;font:inherit;letter-spacing:.03em;text-transform:none;padding:9px 25px 9px 10px;cursor:pointer;box-shadow:none!important;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)!important;background-position:calc(100% - 12px) 50%,calc(100% - 8px) 50%!important;background-size:4px 4px,4px 4px!important;background-repeat:no-repeat!important}
+.language-switcher select:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.language-switcher option{background:#f2f0eb;color:#20231e}
+.home .site-header:not(.scrolled) .language-switcher option{background:#20231e;color:#fff}
+@media(max-width:1050px){.language-switcher-label{display:none}.language-switcher select{padding-left:8px;max-width:105px}}
+@media(max-width:760px){.site-nav .language-switcher{flex:0 0 auto}.language-switcher select{font-size:12px;padding-top:7px;padding-bottom:7px;max-width:106px}}
+@media(prefers-reduced-motion:reduce){.language-switcher select{scroll-behavior:auto}}
