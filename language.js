@@ -121,6 +121,18 @@
   }
 
   function start() {
+    document.querySelectorAll('a.booking[href*="wa.me"]').forEach(link => {
+      const pair = document.createElement('div');
+      pair.className = 'booking-pair';
+      link.before(pair); pair.append(link);
+      const facebook = document.createElement('a');
+      facebook.className = 'booking facebook-booking';
+      facebook.href = 'https://www.facebook.com/login/';
+      facebook.target = '_blank'; facebook.rel = 'noopener noreferrer';
+      pair.append(facebook);
+    });
+    const updateFacebook = lang => document.querySelectorAll('.facebook-booking').forEach(link => { link.textContent = lang === 'ru' ? 'Записаться в Facebook ↗' : lang === 'es' ? 'Reservar en Facebook ↗' : 'Book on Facebook ↗'; });
+    document.addEventListener('francesca:language', event => updateFacebook(event.detail.lang));
     document.querySelectorAll('.language-select').forEach(select => select.addEventListener('change', event => applyLanguage(event.target.value)));
     let saved = 'en';
     try { saved = localStorage.getItem('francesca-language') || 'en'; } catch (_) {}

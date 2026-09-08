@@ -6,3 +6,4 @@
 @media(max-width:1050px){.language-switcher-label{display:none}.language-switcher select{padding-left:8px;max-width:105px}}
 @media(max-width:760px){.site-nav .language-switcher{flex:0 0 auto}.language-switcher select{font-size:12px;padding-top:7px;padding-bottom:7px;max-width:106px}}
 @media(prefers-reduced-motion:reduce){.language-switcher select{scroll-behavior:auto}}
+.booking-pair{display:flex;flex-direction:column;align-items:stretch;gap:7px}.booking-pair .booking{margin:0!important;text-align:center}.booking-pair .booking[href*="wa.me"]{background:#168447!important;color:#fff!important;border-color:#168447!important}.booking-pair .facebook-booking{background:#1877f2!important;color:#fff!important;border-color:#1877f2!important}.site-header>.booking-pair{flex-shrink:0}@media(max-width:760px){.site-header>.booking-pair{margin-left:auto}.booking-pair .booking{font-size:12px!important;padding:10px 12px!important}}
