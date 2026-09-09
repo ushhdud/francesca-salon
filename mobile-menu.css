@@ -6,6 +6,13 @@
   display: none;
 }
 
+.site-header > .booking,
+.site-header > .booking-pair,
+.site-header .mobile-menu-panel > .booking,
+.site-header .mobile-menu-panel > .booking-pair {
+  display: none !important;
+}
+
 @media (max-width: 760px) {
   html {
     scroll-padding-top: 80px !important;
@@ -133,20 +140,6 @@
     border-color: rgba(32, 35, 30, .45) !important;
   }
 
-  .mobile-menu-panel > .booking,
-  .mobile-menu-panel > .booking-pair {
-    display: flex !important;
-    width: 100%;
-    margin: 0 !important;
-  }
-
-  .mobile-menu-panel > .booking-pair {
-    flex-direction: column;
-  }
-
-  .mobile-menu-panel .booking {
-    width: 100%;
-  }
 }
 
 @keyframes mobile-menu-in {
