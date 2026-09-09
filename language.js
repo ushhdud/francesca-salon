@@ -107,7 +107,7 @@
     });
   }
 
-  function applyLanguage(lang) {
+  function applyLanguage(lang, rememberChoice = false) {
     if (!['en','ru','es'].includes(lang)) lang = 'en';
     translateTree(lang);
     const originalTitle = document.documentElement.dataset.originalTitle || document.title;
@@ -116,8 +116,24 @@
     document.documentElement.lang = lang;
     document.querySelectorAll('.language-select').forEach(select => { select.value = lang; });
     document.querySelectorAll('.language-switcher-label').forEach(label => { label.textContent = lang === 'ru' ? 'Язык' : lang === 'es' ? 'Idioma' : 'Language'; });
-    try { localStorage.setItem('francesca-language', lang); } catch (_) {}
+    if (rememberChoice) {
+      try { localStorage.setItem('francesca-language-choice', lang); } catch (_) {}
+    }
     document.dispatchEvent(new CustomEvent('francesca:language', { detail: { lang } }));
+  }
+
+  function detectLanguage() {
+    const locales = [navigator.language, ...(navigator.languages || [])]
+      .filter(Boolean)
+      .map(value => value.toLowerCase());
+    if (locales.some(value => value === 'ru' || value.startsWith('ru-'))) return 'ru';
+    if (locales.some(value => value === 'es' || value.startsWith('es-'))) return 'es';
+    if (locales.some(value => value === 'en-us' || value.endsWith('-us'))) return 'en';
+    let zone = '';
+    try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+    if (/^(Europe\/Moscow|Europe\/Kaliningrad|Europe\/Samara|Europe\/Volgograd|Asia\/(Anadyr|Barnaul|Chita|Irkutsk|Kamchatka|Khandyga|Krasnoyarsk|Magadan|Novokuznetsk|Novosibirsk|Omsk|Sakhalin|Srednekolymsk|Tomsk|Ust-Nera|Vladivostok|Yakutsk|Yekaterinburg))$/.test(zone)) return 'ru';
+    if (zone.startsWith('America/')) return locales.some(value => value.startsWith('es')) ? 'es' : 'en';
+    return 'en';
   }
 
   function start() {
@@ -133,10 +149,10 @@
     });
     const updateFacebook = lang => document.querySelectorAll('.facebook-booking').forEach(link => { link.textContent = lang === 'ru' ? 'Записаться в Facebook ↗' : lang === 'es' ? 'Reservar en Facebook ↗' : 'Book on Facebook ↗'; });
     document.addEventListener('francesca:language', event => updateFacebook(event.detail.lang));
-    document.querySelectorAll('.language-select').forEach(select => select.addEventListener('change', event => applyLanguage(event.target.value)));
-    let saved = 'en';
-    try { saved = localStorage.getItem('francesca-language') || 'en'; } catch (_) {}
-    applyLanguage(saved);
+    document.querySelectorAll('.language-select').forEach(select => select.addEventListener('change', event => applyLanguage(event.target.value, true)));
+    let selected = '';
+    try { selected = localStorage.getItem('francesca-language-choice') || ''; } catch (_) {}
+    applyLanguage(selected || detectLanguage());
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
