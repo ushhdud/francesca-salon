@@ -1,0 +1,97 @@
+:root {
+  --button-ink: #080908;
+  --button-paper: #f2f0eb;
+}
+
+.booking,
+.toplink {
+  display: inline-flex !important;
+  min-height: 44px;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  gap: .75em;
+  padding: 0 22px !important;
+  border: 1px solid var(--button-ink) !important;
+  border-radius: 4px !important;
+  font-family: Arial, sans-serif;
+  font-size: 10px !important;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .22em;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  white-space: nowrap !important;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease,
+    box-shadow .2s ease !important;
+}
+
+.booking,
+.booking-pair .booking,
+.booking-pair .booking[href*="wa.me"],
+.booking-pair .facebook-booking {
+  background: var(--button-ink) !important;
+  color: #fff !important;
+  border-color: var(--button-ink) !important;
+}
+
+.toplink {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .booking:hover,
+  .booking-pair .booking:hover {
+    background: #30322f !important;
+    border-color: #30322f !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(8, 9, 8, .15);
+  }
+
+  .toplink:hover {
+    background: var(--button-ink) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+  }
+}
+
+footer .toplink {
+  border-color: currentColor !important;
+}
+
+.booking-pair {
+  gap: 8px;
+}
+
+@media (max-width: 760px) {
+  .booking,
+  .toplink,
+  .booking-pair .booking {
+    min-height: 44px;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+    border-radius: 4px !important;
+    font-size: 9px !important;
+    letter-spacing: .18em;
+    white-space: normal !important;
+  }
+
+  .page-actions {
+    gap: 10px !important;
+  }
+
+  .service-card .toplink,
+  .home-service-card .toplink {
+    width: fit-content;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booking,
+  .toplink {
+    transition: none !important;
+  }
+}
