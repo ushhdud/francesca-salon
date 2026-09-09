@@ -126,13 +126,12 @@
     const locales = [navigator.language, ...(navigator.languages || [])]
       .filter(Boolean)
       .map(value => value.toLowerCase());
-    if (locales.some(value => value === 'ru' || value.startsWith('ru-'))) return 'ru';
-    if (locales.some(value => value === 'es' || value.startsWith('es-'))) return 'es';
-    if (locales.some(value => value === 'en-us' || value.endsWith('-us'))) return 'en';
     let zone = '';
     try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
     if (/^(Europe\/Moscow|Europe\/Kaliningrad|Europe\/Samara|Europe\/Volgograd|Asia\/(Anadyr|Barnaul|Chita|Irkutsk|Kamchatka|Khandyga|Krasnoyarsk|Magadan|Novokuznetsk|Novosibirsk|Omsk|Sakhalin|Srednekolymsk|Tomsk|Ust-Nera|Vladivostok|Yakutsk|Yekaterinburg))$/.test(zone)) return 'ru';
-    if (zone.startsWith('America/')) return locales.some(value => value.startsWith('es')) ? 'es' : 'en';
+    if (zone.startsWith('America/')) return 'en';
+    if (locales.some(value => value === 'ru' || value.startsWith('ru-'))) return 'ru';
+    if (locales.some(value => value === 'es' || value.startsWith('es-'))) return 'es';
     return 'en';
   }
 
