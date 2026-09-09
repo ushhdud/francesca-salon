@@ -66,6 +66,34 @@ footer .toplink {
   gap: 8px;
 }
 
+.booking[href*="wa.me"],
+.booking-pair .booking[href*="wa.me"] {
+  background: #168447 !important;
+  color: #fff !important;
+  border-color: #168447 !important;
+}
+
+.booking.facebook-booking,
+.booking-pair .facebook-booking {
+  background: #1877f2 !important;
+  color: #fff !important;
+  border-color: #1877f2 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .booking[href*="wa.me"]:hover,
+  .booking-pair .booking[href*="wa.me"]:hover {
+    background: #116c3a !important;
+    border-color: #116c3a !important;
+  }
+
+  .booking.facebook-booking:hover,
+  .booking-pair .facebook-booking:hover {
+    background: #0d64d8 !important;
+    border-color: #0d64d8 !important;
+  }
+}
+
 @media (max-width: 760px) {
   .booking,
   .toplink,
